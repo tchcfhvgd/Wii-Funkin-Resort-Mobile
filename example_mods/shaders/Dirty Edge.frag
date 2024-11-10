@@ -1,7 +1,5 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
@@ -60,7 +58,10 @@ vec2 get_random_sampling_offset(vec2 xy) {
 
 void mainImage()
 {
-    // For convenience
+    vec2 uv = openfl_TextureCoordv.xy;
+vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+vec2 iResolution = openfl_TextureSize;
+     // For convenience
     vec2 xy_norm = fragCoord/iResolution.xy;
     vec2 mouse_xy_norm = iMouse.xy / iResolution.xy;
     float is_mouse_down = clamp(iMouse.z, 0., 1.);
@@ -94,4 +95,3 @@ void mainImage()
     fragColor = vec4(col, 1.0);
 gl_FragColor.a = flixel_texture2D(bitmap, openfl_TextureCoordv).a;
 }
-
