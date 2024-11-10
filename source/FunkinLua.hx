@@ -2887,10 +2887,16 @@ class FunkinLua {
 		});
 
 		Lua_helper.add_callback(lua, 'tweenShader', function(shader:String, values:Dynamic, duration:Float, ease:String) { 
+			if (ClientPrefs.shaders)
+            {
 			FlxTween.tween(PlayState.instance.variables.get(shader), values, duration, {ease: PlayState.instance.variables.get('getFlxEaseByString')(ease)});
+			}
 		});
 		Lua_helper.add_callback(lua, 'tweenShaderCancel', function(shader:String, ?fieldPaths:Array<String>) { 
+			if (ClientPrefs.shaders)
+			{
 			FlxTween.cancelTweensOf(PlayState.instance.variables.get(shader), fieldPaths);
+			}
 		});
 		Lua_helper.add_callback(lua, 'setVar', function(varName:String, value:Dynamic) {
 			PlayState.instance.variables.set(varName, value);
