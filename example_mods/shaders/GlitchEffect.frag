@@ -64,8 +64,8 @@ float insideRange(float v, float bottom, float top) {
 }
 
 //inputs
-uniform float AMT = 0.2; //0 - 1 glitch amount
-uniform float SPEED = 0.6; //0 - 1 speed
+uniform float AMT; //0 - 1 glitch amount
+uniform float SPEED; //0 - 1 speed
    
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
