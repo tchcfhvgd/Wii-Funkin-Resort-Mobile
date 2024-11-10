@@ -8,7 +8,9 @@ import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
 import openfl.Lib;
+#if windows
 import backend.SpecsState;
+#end
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
@@ -198,8 +200,6 @@ class Main extends Sprite
 
 		if (!FileSystem.exists("crash/"))
 			FileSystem.createDirectory("crash/");
-
-		errMsg += "\n\n" + SpecsState.toString() + "\n";
 
 		File.saveContent(path, errMsg + "\n");
 
