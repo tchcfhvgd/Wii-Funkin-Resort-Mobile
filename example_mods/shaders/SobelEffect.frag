@@ -7,9 +7,9 @@ void main()
 {
     vec2 uv = openfl_TextureCoordv;
 	vec4 col = flixel_texture2D(bitmap, uv);
-    vec2 resFactor = (1/openfl_TextureSize.xy)*intensity;
+    vec2 resFactor = (1.0/openfl_TextureSize.xy)*intensity;
 
-    if (strength <= 0)
+    if (strength <= 0.0)
     {
         gl_FragColor = col;
          return;
@@ -29,8 +29,8 @@ void main()
     vec4 bottomMiddle = flixel_texture2D(bitmap, vec2(uv.x, uv.y+resFactor.y));
     vec4 bottomRight = flixel_texture2D(bitmap, vec2(uv.x+resFactor.x, uv.y+resFactor.y));
 
-    vec4 Gx = (topLeft) + (2*midLeft) + (bottomLeft) - (topRight) - (2*midRight) - (bottomRight);
-    vec4 Gy = (topLeft) + (2*topMiddle) + (topRight) - (bottomLeft) - (2*bottomMiddle) - (bottomRight);
+    vec4 Gx = (topLeft) + (2.0*midLeft) + (bottomLeft) - (topRight) - (2.0*midRight) - (bottomRight);
+    vec4 Gy = (topLeft) + (2.0*topMiddle) + (topRight) - (bottomLeft) - (2.0*bottomMiddle) - (bottomRight);
     vec4 G = sqrt((Gx*Gx) + (Gy*Gy));
 			
 	gl_FragColor = mix(col, G, strength);
