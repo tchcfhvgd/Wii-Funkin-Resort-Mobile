@@ -1,7 +1,5 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+
 uniform float iTime;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
@@ -22,7 +20,9 @@ float rng(float seed)
 
 void mainImage()
 {
-	vec2 uv = fragCoord.xy / iResolution.xy;
+	vec2 uv = openfl_TextureCoordv.xy;
+vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+vec2 iResolution = openfl_TextureSize;
     vec2 blockS = floor(uv * vec2(24., 9.));
     vec2 blockL = floor(uv * vec2(8., 4.));
     
