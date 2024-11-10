@@ -23,7 +23,7 @@ void main()
     color.rgb *= contrast;
     color.rgb += vec3(brightness,brightness,brightness);
 
-    if (effect <= 0)
+    if (effect <= 0.0)
     {
         gl_FragColor = color;
         return;
