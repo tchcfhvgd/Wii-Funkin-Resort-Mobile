@@ -1,8 +1,8 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+
 uniform float iTime;
+vec2 uv;
+vec2 iResolution;
 #define iChannel0 bitmap
 #define texture flixel_texture2D
 #define fragColor gl_FragColor
@@ -90,6 +90,10 @@ float lookup(vec2 p, float dx, float dy)
 
 void mainImage()
 {
+  uv = openfl_TextureCoordv.xy;
+
+vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+iResolution = openfl_TextureSize;
 	//
 	// Inspired by the technique illustrated at
 	// http://www.geeks3d.com/20110219/shader-library-crosshatching-glsl-filter/
