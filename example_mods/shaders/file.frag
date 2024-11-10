@@ -1,7 +1,5 @@
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+
 uniform float iTime;
 #define iChannel0 bitmap
 #define iChannel1 bitmap
@@ -60,8 +58,9 @@ vec2 screenDistort(vec2 uv)
 
 void main()
 {
-vec2 fragCoord = openfl_TextureCoordv * iResolution;
-	vec2 uv = fragCoord.xy / iResolution.xy;
+    vec2 uv = openfl_TextureCoordv.xy;
+vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+vec2 iResolution = openfl_TextureSize;
 	uv = screenDistort(uv);
 	vec3 video = getVideo(uv);
 	float vigAmt = 3.+.3*sin(iTime + 5.*cos(iTime*5.));
