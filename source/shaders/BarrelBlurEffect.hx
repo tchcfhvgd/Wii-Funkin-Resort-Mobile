@@ -52,7 +52,7 @@ class BarrelBlurEffect extends ShaderEffect
 class BarrelBlurShader extends FlxShader
 {
 	@:glFragmentSource('
-		#pragma header
+	    #pragma header
 		
         uniform float barrel;
         uniform float zoom;
@@ -165,14 +165,14 @@ class BarrelBlurShader extends FlxShader
             vec2 oversiz = distort( vec2(1.0), 1.0, min_distort, max_distort );
             uv = mix(uv,remap( uv, 1.0-oversiz, oversiz ),0.0);
             
-            const int num_iter = 7;
+            const float num_iter = 7.0;
             const float stepsiz = 1.0 / (float(num_iter)-1.0);
             float rnd = nrand( uv + fract(iTime) );
             float t = rnd*stepsiz;
             
             vec4 sumcol = vec4(0.0);
             vec3 sumw = vec3(0.0);
-            for ( int i=0; i<num_iter; ++i )
+            for ( float i=0.0; i<num_iter; ++i )
             {
                 vec4 w = spectrum_offset_rgb( t );
                 sumw += w.rgb;
