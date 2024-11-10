@@ -11,9 +11,9 @@
 //
 // You can use this shader as a template for ray marching shaders
 
-#define MAX_STEPS 100
-#define MAX_DIST 100.
-#define SURF_DIST .001
+#define MAX_STEPS 100.0
+#define MAX_DIST 100.0
+#define SURF_DIST 0.001
 
 #define S smoothstep
 #define T iTime
@@ -27,9 +27,9 @@ mat3 rotateX(float theta) {
     float c = cos(theta);
     float s = sin(theta);
     return mat3(
-        vec3(1, 0, 0),
-        vec3(0, c, -s),
-        vec3(0, s, c)
+        vec3(1.0, 0.0, 0.0),
+        vec3(0.0, c, -s),
+        vec3(0.0, s, c)
     );
 }
 
@@ -38,9 +38,9 @@ mat3 rotateY(float theta) {
     float c = cos(theta);
     float s = sin(theta);
     return mat3(
-        vec3(c, 0, s),
-        vec3(0, 1, 0),
-        vec3(-s, 0, c)
+        vec3(c, 0.0, s),
+        vec3(0.0, 1.0, 0.0),
+        vec3(-s, 0.0, c)
     );
 }
 
@@ -49,9 +49,9 @@ mat3 rotateZ(float theta) {
     float c = cos(theta);
     float s = sin(theta);
     return mat3(
-        vec3(c, -s, 0),
-        vec3(s, c, 0),
-        vec3(0, 0, 1)
+        vec3(c, -s, 0.0),
+        vec3(s, c, 0.0),
+        vec3(0.0, 0.0, 1.0)
     );
 }
 
@@ -80,7 +80,7 @@ float GetDist(vec3 p) {
 float RayMarch(vec3 ro, vec3 rd) {
     float dO=0.;
     
-    for(int i=0; i<MAX_STEPS; i++) {
+    for(float i=0.0; i<MAX_STEPS; i++) {
         vec3 p = ro + rd*dO;
         float dS = GetDist(p);
         dO += dS;
@@ -122,7 +122,7 @@ void main() //this shader is pain
     vec2 center = vec2(0.5, 0.5);
     vec2 uv = openfl_TextureCoordv.xy - center;
 
-    uv.x = 0-uv.x;
+    uv.x = 0.0-uv.x;
 
     vec3 ro = vec3(0.0, 0.0, zoom);
 
