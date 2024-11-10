@@ -22,9 +22,9 @@ void main()
     vig = 0.0-vig+1.0;
 
     vec3 vigCol = vec3(vig,vig,vig);
-    vigCol.r = vigCol.r * (red/255);
-    vigCol.g = vigCol.g * (green/255);
-    vigCol.b = vigCol.b * (blue/255);
+    vigCol.r = vigCol.r * (red/255.0);
+    vigCol.g = vigCol.g * (green/255.0);
+    vigCol.b = vigCol.b * (blue/255.0);
     col.rgb += vigCol;
     col.a += vig;
 
