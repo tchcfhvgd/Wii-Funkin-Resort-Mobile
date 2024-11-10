@@ -85,7 +85,7 @@ class MainMenuState extends MusicBeatState
 		
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
-		FlxG.mouse.visible = true;
+		FlxG.mouse.visible = false;
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
