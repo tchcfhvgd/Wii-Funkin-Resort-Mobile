@@ -1,8 +1,6 @@
 //SHADERTOY PORT FIX
 #pragma header
-vec2 uv = openfl_TextureCoordv.xy;
-vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-vec2 iResolution = openfl_TextureSize;
+
 vec2 iMouse;
 uniform float iTime;
 #define iChannel0 bitmap
@@ -125,7 +123,9 @@ float noise(float p){
 
 void main()
 {
-    vec2 uv = fragCoord.xy / iResolution.xy;
+    vec2 uv = openfl_TextureCoordv.xy;
+vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+vec2 iResolution = openfl_TextureSize;
     //float n = 1.5;
     float n = noise(fragCoord.y + iTime);
     float sdist = snoise(vec2(0.0, uv.y * 8.0 + iTime * 2.0));
