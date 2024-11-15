@@ -210,7 +210,7 @@ class MusicBeatState extends FlxUIState
 	
 			onOutroComplete();
 			FlxG.mouse.load(Paths.image("pointer").bitmap);
-			FlxG.mouse.visible = true;
+			FlxG.mouse.visible = false;
 		}
 
 	public static function resetState() {
