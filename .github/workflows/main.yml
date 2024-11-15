@@ -43,7 +43,6 @@ jobs:
       
       - name: Install Haxelib
         run: |
-          haxelib setup ~/haxelib
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp
           haxelib git lime https://github.com/mcagabe19-stuff/lime
           haxelib install openfl
@@ -58,7 +57,6 @@ jobs:
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten
           haxelib install extension-androidtools
           haxelib install hxcpp-debug-server
-          haxelib list
       
       - name: Setup Lime
         run: |
