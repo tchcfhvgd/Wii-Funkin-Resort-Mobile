@@ -10,12 +10,15 @@ function onEvent(n, v1, v2)
             shaderCoordFix()
 
             runHaxeCode([[
+                if(ClientPrefs.shaders)
+                {
                 var shaderName = "]] .. v1 .. [[";
 
                 game.initLuaShader(shaderName);
 
                 var shader0 = game.createRuntimeShader(shaderName);
                 game.]].. v2 ..[[.setFilters([new ShaderFilter(shader0)]);
+                }
             ]])
         end
     end
