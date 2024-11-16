@@ -25,6 +25,7 @@ enum FlxDPadMode
 enum FlxActionMode
 {
 	A;
+	A2;
 	B;
 	A_B;
 	A_B_C;
@@ -64,6 +65,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 	public var buttonX:FlxButton = new FlxButton(0, 0);
 	public var buttonY:FlxButton = new FlxButton(0, 0);
 	public var buttonZ:FlxButton = new FlxButton(0, 0);
+	public var buttonEx:FlxButton = new FlxButton(0, 0);
 
 	/**
 	 * Create a gamepad.
@@ -113,6 +115,8 @@ class FlxVirtualPad extends FlxSpriteGroup
 		{
 			case A:
 				add(buttonA = createButton(FlxG.width - 132, FlxG.height - 135, 'a', 0xFF0000));
+			case A2:
+				add(buttonEx = createButton(FlxG.width - 132, FlxG.height - 135, 'a', 0xFF0066FF));
 			case B:
 				add(buttonB = createButton(FlxG.width - 132, FlxG.height - 135, 'b', 0xFFCB00));
 			case A_B:
@@ -184,6 +188,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 		buttonX = FlxDestroyUtil.destroy(buttonX);
 		buttonY = FlxDestroyUtil.destroy(buttonY);
 		buttonZ = FlxDestroyUtil.destroy(buttonZ);
+		buttonEx = FlxDestroyUtil.destroy(buttonEx);
 	}
 
 	private function createButton(X:Float, Y:Float, Graphic:String, Color:Int = 0xFFFFFF):FlxButton
