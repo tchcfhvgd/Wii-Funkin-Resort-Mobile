@@ -157,8 +157,9 @@ class FlxVirtualPad extends FlxSpriteGroup
 			case NONE: // do nothing
 		}
                 if (ClientPrefs.mechanics)
-		
+		{
 			add(buttonEx = createButton(FlxG.width - 132, FlxG.height - 135, 'a', 0xFF0066FF));
+		}
 				
 		scrollFactor.set();
 	}
