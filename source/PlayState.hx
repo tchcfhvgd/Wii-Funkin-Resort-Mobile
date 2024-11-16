@@ -3049,7 +3049,7 @@ class PlayState extends MusicBeatState {
 				health -= 1;
 				dodging = false;
 			}
-			if (controls.DODGE || mobileC.justPressed) {
+			if (FlxG.keys.justPressed.SPACE #if mobile || mobileC.justPressed #end) {
 				dodging = false;
 				dad.specialAnim = true;
 				dad.animation.play("attack", true);
@@ -4134,7 +4134,7 @@ class PlayState extends MusicBeatState {
 		});
 		timeThing = 0;
 		if (!dodging) {
-			if (!controls.DODGE || !mobileC.justPressed) {
+			if (!FlxG.keys.justPressed.SPACE #if mobile || !mobileC.justPressed #end) {
 				if (timeThing >= timeMax) {
 					health -= 1;
 					trace("THIS GUY FUCKING SUCKS!");
