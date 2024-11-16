@@ -1250,6 +1250,11 @@ class PlayState extends MusicBeatState {
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		
+		#if mobile
+   addMobileControls(false);
+   mobileControls.visible = false;
+   #end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -2237,6 +2242,9 @@ class PlayState extends MusicBeatState {
 			if (skipCountdown || startOnTime > 0)
 				skipArrowStartTween = true;
 
+			#if mobile
+		mobileControls.visible = true;
+		#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			// NoteMovement.getDefaultStrumPos(this);
@@ -3205,7 +3213,7 @@ class PlayState extends MusicBeatState {
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause) {
+		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause) {
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if (ret != FunkinLua.Function_Stop) {
 				openPauseMenu();
@@ -4252,6 +4260,10 @@ class PlayState extends MusicBeatState {
 
 		deathCounter = 0;
 		seenCutscene = false;
+		
+		#if mobile
+		mobileControls.visible = false;
+		#end
 
 		#if ACHIEVEMENTS_ALLOWED
 		if (achievementObj != null) {
