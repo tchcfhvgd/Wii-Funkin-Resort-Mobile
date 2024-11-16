@@ -5721,6 +5721,11 @@ class PlayState extends MusicBeatState {
 
 		changeSelection();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+		
+	    #if mobile
+                addVirtualPad(UP_DOWN, A);
+                addVirtualPadCamera(false);
+                #end
 	}
 
 	var selectorLeft:Alphabet;
