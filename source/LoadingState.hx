@@ -156,7 +156,7 @@ class LoadingState extends MusicBeatState
 	inline static public function loadAndSwitchState(target:NextState, stopMusic = false){
 		FlxG.switchState(getNextState(target, stopMusic));
 		FlxG.mouse.load(Paths.image("pointer").bitmap);
-		FlxG.mouse.visible = true;
+		FlxG.mouse.visible = false;
 	}
 	
 	static function getNextState(target:NextState, stopMusic = false):NextState
