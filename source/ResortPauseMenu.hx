@@ -32,6 +32,7 @@ class ResortPauseMenu extends MusicBeatSubstate {
                 PlayState.cancelMusicFadeTween();
                 FlxG.sound.playMusic(Paths.music('freakyMenu'));
                 PlayState.changedDifficulty = false;
+                FlxG.mouse.visible = false;
                 PlayState.chartingMode = false;
             }
         });
@@ -48,6 +49,7 @@ class ResortPauseMenu extends MusicBeatSubstate {
             snd.onComplete = () -> {
                 PlayState.instance.paused = true; // For lua
                 FlxG.sound.music.volume = 0;
+                FlxG.mouse.visible = false;
                 PlayState.instance.vocals.volume = 0;
                 FlxG.switchState(()->new PlayState());
             }
@@ -63,7 +65,8 @@ class ResortPauseMenu extends MusicBeatSubstate {
             stopButtonPresses();
             var snd:FlxSound = new FlxSound().loadEmbedded("assets/sounds/pause/wii_sfx_4.ogg").play();
             snd.onComplete = () -> {
-                FlxG.state.closeSubState();  
+                FlxG.state.closeSubState();
+                FlxG.mouse.visible = false;
             }
         });
         resume.loadGraphic("assets/images/pause/resume.png", true, 1280, 165);
