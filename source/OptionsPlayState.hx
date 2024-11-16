@@ -41,14 +41,29 @@ class OptionsPlayState extends MusicBeatState
 	function openSelectedSubstate(label:String) {
 		switch(label) {
 			case 'Note Colors':
+				#if mobile
+				removeVirtualPad();
+				#end
 				openSubState(new options.NotesSubState());
 			case 'Controls':
+				#if mobile
+				removeVirtualPad();
+				#end
 				openSubState(new options.ControlsSubState());
 			case 'Graphics':
+				#if mobile
+				removeVirtualPad();
+				#end
 				openSubState(new options.GraphicsSettingsSubState());
 			case 'Visuals and UI':
+				#if mobile
+				removeVirtualPad();
+				#end
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
+				#if mobile
+				removeVirtualPad();
+				#end
 				openSubState(new options.GameplaySettingsSubState());
 			case 'Adjust Delay and Combo':
 				LoadingState.loadAndSwitchState(new NoteOffsetState());
@@ -90,12 +105,20 @@ class OptionsPlayState extends MusicBeatState
 		changeSelection();
 		ClientPrefs.saveSettings();
 
+		#if mobile
+                addVirtualPad(UP_DOWN, A_B_X_Y);
+                #end
+		
 		super.create();
 	}
 
 	override function closeSubState() {
 		super.closeSubState();
 		ClientPrefs.saveSettings();
+		#if mobile
+		removeVirtualPad();
+		addVirtualPad(UP_DOWN, A_B_X_Y);
+		#end
 	}
 
 	override function update(elapsed:Float) {
@@ -112,6 +135,18 @@ class OptionsPlayState extends MusicBeatState
 
 		}
 
+		#if mobile
+	 if (virtualPad.buttonX.justPressed)
+		{
+			removeVirtualPad();
+			openSubState(new mobile.MobileControlsSubState());
+		}
+		if (virtualPad.buttonY.justPressed) {
+			removeVirtualPad();
+			openSubState(new mobile.AndroidSettingsSubState());
+		}
+	#end
+		
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			FlxG.switchState(() ->new PlayState());
@@ -332,6 +367,11 @@ class NoteOffsetState extends MusicBeatState
 		Conductor.changeBPM(128.0);
 		FlxG.sound.playMusic(Paths.music('offsetSong'), 1, true);
 
+		#if mobile
+                addVirtualPad(LEFT_RIGHT, A_B_C);
+                addVirtualPadCamera(false);
+                #end
+		
 		super.create();
 	}
 
@@ -430,7 +470,7 @@ class NoteOffsetState extends MusicBeatState
 				}
 			}
 
-			if(controls.RESET)
+			if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end)
 			{
 				for (i in 0...ClientPrefs.comboOffset.length)
 				{
@@ -468,7 +508,7 @@ class NoteOffsetState extends MusicBeatState
 				updateNoteDelay();
 			}
 
-			if(controls.RESET)
+			if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end)
 			{
 				holdTime = 0;
 				barPercent = 0;
