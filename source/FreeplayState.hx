@@ -388,7 +388,9 @@ class FreeplayState extends MusicBeatState
 			changeSelection(ClientPrefs.lastSongPosition -1,false);			
 		}		
 
-
+                #if mobile
+                addVirtualPad(LEFT_FULL, A_B_C_X_Y);
+                #end
 
 	}
 
@@ -546,6 +548,10 @@ class FreeplayState extends MusicBeatState
 		changeSelection(0, false);
 		persistentUpdate = true;
 		super.closeSubState();
+		#if mobile
+		removeVirtualPad();
+		addVirtualPad(LEFT_FULL, A_B_C_X_Y);
+		#end
 	}
 
 	public inline function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)
@@ -677,8 +683,8 @@ class FreeplayState extends MusicBeatState
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
-		var space = FlxG.keys.justPressed.SPACE;
-		var ctrl = FlxG.keys.justPressed.CONTROL;
+		var space = FlxG.keys.justPressed.SPACE #if mobile || virtualPad.buttonX.justPressed #end;
+		var ctrl = FlxG.keys.justPressed.CONTROL #if mobile || virtualPad.buttonC.justPressed #end;
 
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
@@ -743,6 +749,9 @@ class FreeplayState extends MusicBeatState
 		{
 			persistentUpdate = false;
 			openSubState(new GameplayChangersSubstate());
+			#if mobile
+			removeVirtualPad();
+			#end
 		}
 		else if(space)
 		{
@@ -811,10 +820,13 @@ class FreeplayState extends MusicBeatState
 					
 			destroyFreeplayVocals();
 		}
-		else if(controls.RESET)
+		else if(controls.RESET #if mobile || virtualPad.buttonY.justPressed #end)
 		{
 			persistentUpdate = false;
 			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+		        #if mobile
+			removeVirtualPad();
+			#end
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
 		if (FlxG.sound.music != null){
