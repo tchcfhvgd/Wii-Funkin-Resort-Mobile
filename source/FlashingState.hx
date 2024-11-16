@@ -43,6 +43,11 @@ class FlashingState extends MusicBeatState
 			{
 				timeLeft--;
 			}, 5);
+
+		#if mobile
+                addVirtualPad(NONE, A_B);
+                addVirtualPadCamera(false);
+                #end
 	}
 
 	override function update(elapsed:Float)
