@@ -135,7 +135,6 @@ class PlayState extends MusicBeatState {
 	public var GF_X:Float = 400;
 	public var GF_Y:Float = 130;
 
-	final mobileC:mobile.flixel.FlxButton = @:privateAccess {mobileControls.hitbox.hints[4];}
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
@@ -3043,6 +3042,8 @@ class PlayState extends MusicBeatState {
 			}
 		}
 
+		final mobileC:mobile.flixel.FlxButton = @:privateAccess {(mobile.MobileControls.mode == "Hitbox") ? PlayState.instance.mobileControls.hitbox.hints[4] : PlayState.instance.mobileControls.virtualPad.buttonEx;}
+		
 		if (dodging) {
 			if (timeThing >= timeMax) {
 				health -= 1;
@@ -4108,6 +4109,7 @@ class PlayState extends MusicBeatState {
 	}
 
 	private function punch(_):Void {
+		final mobileC:mobile.flixel.FlxButton = @:privateAccess {(mobile.MobileControls.mode == "Hitbox") ? PlayState.instance.mobileControls.hitbox.hints[4] : PlayState.instance.mobileControls.virtualPad.buttonEx;}
 		trace("did the stupid");
 		spaceMech.offset.set(0, 115);
 		spaceMech.animation.play('glove', true);
