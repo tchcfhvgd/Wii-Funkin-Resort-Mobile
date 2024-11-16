@@ -40,10 +40,10 @@ class FlxHitbox extends FlxSpriteGroup
 			colors = [0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF];
 
 		for (i in 0...ammo)
-			add(hints[i] = createHint(i * perHintWidth, (ClientPrefs.mobileCEx) ? offsetSec : 0, perHintWidth,
-				(ClientPrefs.mobileCEx) ? Std.int(FlxG.height / ammo) * 3 : perHintHeight, colors[i]));
+			add(hints[i] = createHint(i * perHintWidth, (ClientPrefs.mechanics) ? offsetSec : 0, perHintWidth,
+				(ClientPrefs.mechanics) ? Std.int(FlxG.height / ammo) * 3 : perHintHeight, colors[i]));
 
-		if (ClientPrefs.mobileCEx)
+		if (ClientPrefs.mechanics)
 			add(hints[4] = createHint(0, offsetFir, FlxG.width, Std.int(FlxG.height / 4), 0xFF0066FF));
 
 		scrollFactor.set();
