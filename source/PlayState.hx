@@ -135,6 +135,7 @@ class PlayState extends MusicBeatState {
 	public var GF_X:Float = 400;
 	public var GF_Y:Float = 130;
 
+	final mobileC:mobile.flixel.FlxButton = @:privateAccess {mobileControls.hitbox.hints[4];}
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
@@ -3047,7 +3048,7 @@ class PlayState extends MusicBeatState {
 				health -= 1;
 				dodging = false;
 			}
-			if (controls.DODGE || mobileControls.hitbox.hints[4].justPressed) {
+			if (controls.DODGE || mobileC.justPressed) {
 				dodging = false;
 				dad.specialAnim = true;
 				dad.animation.play("attack", true);
@@ -4131,7 +4132,7 @@ class PlayState extends MusicBeatState {
 		});
 		timeThing = 0;
 		if (!dodging) {
-			if (!controls.DODGE || !mobileControls.hitbox.hints[4].justPressed) {
+			if (!controls.DODGE || !mobileC.justPressed) {
 				if (timeThing >= timeMax) {
 					health -= 1;
 					trace("THIS GUY FUCKING SUCKS!");
