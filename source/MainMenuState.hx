@@ -205,15 +205,14 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
+		#if mobile
+                addVirtualPad(LEFT_FULL, A_B);
+                #end
+			
 		super.create();
 
 		Conductor.changeBPM(128);
-
-		
 	}
-
-
-
 
 	var selectedSomethin:Bool = false;
 
